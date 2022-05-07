@@ -1,13 +1,7 @@
 import Board from '../components/Board';
-import { AppStyles } from '../styles';
 
 function App() {
-  return (
-    <>
-      <Board />
-      <AppStyles />
-    </>
-  );
+  return <Board />;
 }
 
 export default App;
