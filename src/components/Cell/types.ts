@@ -9,7 +9,6 @@ export interface WinningCoordinates {
 }
 
 export interface iCell {
-  winner: WinningCoordinates | null;
   onClick: () => void;
   color: Color;
   row: number;

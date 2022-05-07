@@ -9,18 +9,12 @@ const Board: React.FC = () => {
   const state = BoardState();
 
   return (
-    <BoardContext.Provider value={{}}>
-      <Header {...state} />
+    <BoardContext.Provider value={state}>
+      <Header />
       <GameContainer>
         <GameBoardContainer>
           {state.board.map((colors, i) => (
-            <Row
-              key={`column-${i}`}
-              colors={colors}
-              dropCoin={state.dropCoin}
-              row={i}
-              winner={state.winner}
-            />
+            <Row key={`column-${i}`} colors={colors} row={i} />
           ))}
         </GameBoardContainer>
       </GameContainer>

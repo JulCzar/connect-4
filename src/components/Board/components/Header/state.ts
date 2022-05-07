@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
 import { Color, Nullable } from '../../../../types';
-import { iBoard } from '../../config/types';
+import { useBoardContext } from '../../config/context';
 
 type PlayerName = 'red' | 'yellow';
 
-export const HeaderState = (props: iBoard) => {
+export const HeaderState = () => {
+  const { winner, currentPlayer } = useBoardContext();
   const [playerName, setPlayerName] = useState<PlayerName>('red');
   const [winnerName, setWInnerName] = useState<Nullable<PlayerName>>(null);
   const [hasWinner, setHasWinner] = useState(false);
@@ -13,15 +14,15 @@ export const HeaderState = (props: iBoard) => {
     return color === Color.R ? 'red' : 'yellow';
   };
   useEffect(() => {
-    if (!props.winner) return;
+    if (!winner) return;
 
     setHasWinner(true);
-    setWInnerName(colorToPlayerName(props.winner.color));
-  }, [props.winner]);
+    setWInnerName(colorToPlayerName(winner.color));
+  }, [winner]);
 
   useEffect(() => {
-    setPlayerName(colorToPlayerName(props.currentPlayer));
-  }, [props.currentPlayer]);
+    setPlayerName(colorToPlayerName(currentPlayer));
+  }, [currentPlayer]);
 
   return {
     playerName,

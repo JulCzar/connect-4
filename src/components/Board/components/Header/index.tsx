@@ -1,12 +1,14 @@
 import React from 'react';
-import { iBoard } from '../../config/types';
 import { HeaderState } from './state';
 
-const Header: React.FC<iBoard> = props => {
-  const { playerName, hasWinner, winnerName } = HeaderState(props);
-  if (hasWinner) return <div>{winnerName} won!</div>;
+const Header: React.FC = () => {
+  const { playerName, hasWinner, winnerName } = HeaderState();
 
-  return <div>{playerName} plays</div>;
+  return hasWinner ? (
+    <div>{winnerName} won!</div>
+  ) : (
+    <div>{playerName} plays</div>
+  );
 };
 
 export default Header;

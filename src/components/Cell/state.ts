@@ -1,8 +1,10 @@
 import { Color } from '../../types';
+import { useBoardContext } from '../Board/config/context';
 import { iCell } from './types';
 
 export const CellState = (props: iCell) => {
-  const { color, winner, row, col } = props;
+  const { winner } = useBoardContext();
+  const { color, row, col } = props;
 
   const yellowOrGray = color === Color.Y ? 'yellow' : '';
   const _color = color === Color.R ? 'red' : yellowOrGray;

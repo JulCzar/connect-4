@@ -7,11 +7,10 @@ export const AppStyles = createGlobalStyle`
   }
 
   @keyframes animated {
-  50% {
-    transform: rotateY(180deg);
+    50% {
+      transform: rotateY(180deg);
+    }
   }
-}
-
 `;
 
 export const GameContainer = styled('div')`
