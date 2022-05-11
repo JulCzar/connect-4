@@ -1,5 +1,5 @@
-import { Combination } from '../../config/winningCoordinates';
-import { Color } from '../../types';
+import { Combination } from '../../../config/winningCoordinates';
+import { Color } from '../../../types';
 
 export interface WinningCoordinates {
   row: number;

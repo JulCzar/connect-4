@@ -28,13 +28,6 @@ const diagonalNorthWest = [
   [-3, 3],
 ];
 
-const square = [
-  [0, 0],
-  [0, 1],
-  [1, 0],
-  [1, 1],
-];
-
 export type Combination = number[][];
 
 export const boardWidth = 7;
@@ -45,5 +38,4 @@ export const winningCombinations: Combination[] = [
   vertical,
   diagonalNorthEast,
   diagonalNorthWest,
-  square,
 ];

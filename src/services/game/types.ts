@@ -1,5 +1,5 @@
-import { Color, Nullable } from '../../../types';
-import { WinningCoordinates } from '../../Cell/types';
+import { Color, Nullable } from '../../types';
+import { WinningCoordinates } from '../../shared/components/Cell/types';
 
 export type BoardState = Color[][];
 

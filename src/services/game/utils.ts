@@ -1,5 +1,5 @@
-import { BOARD_HEIGHT, BOARD_WIDTH } from '../../../config/constants';
-import { Color } from '../../../types';
+import { BOARD_HEIGHT, BOARD_WIDTH } from '../../config/constants';
+import { Color } from '../../types';
 import { BoardState } from './types';
 
 export const getInitialState = () => {

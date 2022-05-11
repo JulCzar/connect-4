@@ -34,6 +34,11 @@ export const CellStyle = styled('div')`
   background-color: white;
   margin: 5px;
 
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
   &.yellow {
     background-color: yellow;
     cursor: not-allowed;

@@ -1,4 +1,4 @@
-import { BoardState } from '../components/Board/config/types';
+import { BoardState } from '../services/game/types';
 import { Color } from '../types';
 import { Combination } from './winningCoordinates';
 

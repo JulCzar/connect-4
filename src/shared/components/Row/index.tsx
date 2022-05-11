@@ -1,7 +1,7 @@
 import React from 'react';
 import { GameRow } from '../../styles';
-import { Color } from '../../types';
-import { useBoardContext } from '../Board/config/context';
+import { Color } from '../../../types';
+import { useGameContext } from '../../../services/game/context';
 import Cell from '../Cell';
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Row: React.FC<Props> = ({ row, colors }) => {
-  const { dropCoin } = useBoardContext();
+  const { dropDot: dropCoin } = useGameContext();
   return (
     <GameRow>
       {colors.map((color, col) => (
