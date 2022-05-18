@@ -3447,6 +3447,11 @@ data-urls@^2.0.0:
     whatwg-mimetype "^2.3.0"
     whatwg-url "^8.0.0"
 
+date-fns@^2.28.0:
+  version "2.28.0"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.28.0.tgz#9570d656f5fc13143e50c975a3b6bbeb46cd08b2"
+  integrity sha512-8d35hViGYx/QH0icHYCeLmsLmMUheMmTyV9Fcm6gvNwdw31yXXH+O85sOBJ+OLnLQMKZowvpKb6FgMIQjcpvQw==
+
 debug@2.6.9, debug@^2.6.0, debug@^2.6.9:
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
@@ -6420,6 +6425,13 @@ performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
+
+persistor-node@^1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/persistor-node/-/persistor-node-1.0.11.tgz#403536a858e617c46a087139a8dfcdf41cd44086"
+  integrity sha512-sBHKMMvN90Ons+r8T3q0DWeh9Dz5uT+46WBRlXgbVmaCvT1bJZnSgsj4qL5xgNjnyIhFkYMglYtRlZ+AG2wbtQ==
+  dependencies:
+    date-fns "^2.28.0"
 
 picocolors@^0.2.1:
   version "0.2.1"

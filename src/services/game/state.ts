@@ -1,16 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { network } from '../networks';
 import { Color, Nullable } from '../../types';
-import { getInitialState } from './utils';
+import { getInitialState, getValidMove, saveMoveForPlayer } from './utils';
 import {
   testCombination,
   winningCombinations,
   WinningCoordinates,
 } from '../../config';
-import { Network } from '../models';
 import { colorToPlayerName } from '../../utils';
-
 export const GameState = () => {
   const [AI, setAI] = useState<Color[]>([]);
   const [gameCounter, setGameCount] = useState(0);
@@ -39,6 +36,7 @@ export const GameState = () => {
     newBoard[validRow][col] = color;
 
     setBoard(newBoard);
+    saveMoveForPlayer(colorToPlayerName(color), board, col);
   };
 
   const _getCurrentPlayer = () => {
@@ -60,60 +58,6 @@ export const GameState = () => {
       if (winner) setWinner(winner);
     }
   };
-  function findMax(outputs: number[], exclusions: number[]): number {
-    var order = [];
-    let tempOut = outputs.slice(0);
-    outputs.sort((a, b) => b - a);
-
-    for (let i = 0; i < outputs.length; i++)
-      order.push(tempOut.indexOf(outputs[i]));
-
-    if (outputs[0] === 0) return Math.floor(Math.random() * 7);
-
-    for (let i = 0; i < order.length; i++) {
-      if (!exclusions.includes(order[i])) {
-        return order[i];
-      }
-    }
-    return -1;
-  }
-
-  const getDotMove = (color: Color) => () => {
-    if (winner) {
-      if (autoReset) resetBoard();
-      updateGameCount();
-
-      return;
-    }
-
-    try {
-      const remainingMovesPerCol: Color[] = [];
-
-      for (let i = board[0].length; i; i--) remainingMovesPerCol.push(0);
-
-      for (const row of board)
-        for (let i = 0; i < row.length; i++)
-          if (row[i] === Color.N) remainingMovesPerCol[i] += 1;
-
-      const invalidMoves = remainingMovesPerCol
-        .map((item, i) => ({ i, item }))
-        .filter(({ item }) => item === 0)
-        .map(({ i }) => i);
-
-      if (invalidMoves.length === 7) resetBoard();
-
-      const move = findMax(network.runThrough(board.flat(1))!, invalidMoves);
-
-      if (!AI.includes(currentPlayer!)) return;
-
-      _dropDot(move, color);
-    } catch {
-      // implement catch
-    }
-  };
-
-  const moveRedDot = getDotMove(Color.R);
-  const moveYellowDot = getDotMove(Color.Y);
 
   useEffect(() => {
     getWinner();
@@ -121,8 +65,16 @@ export const GameState = () => {
   }, [board]);
 
   useEffect(() => {
-    if (currentPlayer === Color.R) moveRedDot();
-    else if (currentPlayer === Color.Y) moveYellowDot();
+    if (winner) {
+      updateGameCount();
+    }
+    if (winner || !currentPlayer) return autoReset ? resetBoard() : void 0;
+
+    if (!AI.includes(currentPlayer)) return;
+
+    const col = getValidMove(board);
+
+    _dropDot(col, currentPlayer);
   }, [currentPlayer]);
 
   const dropDot = (col: number) => () => {
@@ -139,7 +91,6 @@ export const GameState = () => {
     board,
     winner,
     dropDot,
-    getRedMove: moveRedDot,
     resetBoard,
     gameCounter,
     setAutoReset,

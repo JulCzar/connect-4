@@ -9,7 +9,6 @@ export const HeaderState = () => {
   const [winnerName, setWInnerName] = useState<Nullable<PlayerName>>(null);
   const [playerName, setPlayerName] = useState<PlayerName>('red');
 
-  const { getRedMove } = boardState;
   useEffect(() => {
     if (!boardState.winner) return;
 
@@ -25,7 +24,6 @@ export const HeaderState = () => {
   return {
     playerName,
     winnerName,
-    getRedMove,
     boardState,
     hasWinner: Boolean(boardState.winner),
   };
